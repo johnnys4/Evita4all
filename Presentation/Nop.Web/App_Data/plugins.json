@@ -34,6 +34,10 @@
     {
       "SystemName": "Widgets.NivoSlider",
       "Version": "1.38"
+    },
+    {
+      "SystemName": "Payments.PayPalSmartPaymentButtons",
+      "Version": "1.13"
     }
   ],
   "PluginNamesToUninstall": [],

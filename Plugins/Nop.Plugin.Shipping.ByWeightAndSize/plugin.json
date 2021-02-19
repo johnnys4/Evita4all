@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Shipping rate computation",
+  "FriendlyName": "MyShipping (By Weight and By Box Size)",
+  "SystemName": "Shipping.ByWeightAndSize",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "John Kalios (johnnys495@hotmail.com)",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Shipping.ByWeightAndSize.dll",
+  "Description": "This plugin offers shipping rates calculated by weight and by box size"
+}
