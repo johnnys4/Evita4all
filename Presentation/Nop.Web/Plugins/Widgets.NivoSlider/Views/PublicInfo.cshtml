@@ -15,24 +15,26 @@
                 {"pictureUrl", Model.Picture1Url},
                 { "text", Model.Text1},
                 { "link", Model.Link1},
-                {"alttext", Model.AltText1 }
+                {"alttext", Model.AltText1 },
+                {"i", "image1" }
             };
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide1)
         }
-        
+
         @{
             var dataSlide2 = new ViewDataDictionary(ViewData)
             {
                 {"pictureUrl", Model.Picture2Url},
                 { "text", Model.Text2},
                 { "link", Model.Link2},
-                {"alttext", Model.AltText2 }
+                {"alttext", Model.AltText2 },
+                {"i", "image2" }
             };
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide2)
         }
-        
+
         @{
             var dataSlide3 = new ViewDataDictionary(ViewData)
             {
@@ -40,7 +42,8 @@
                 { "text", Model.Text3},
                 { "link", Model.Link3},
                 {"alttext", Model.AltText3 },
-                { "dataTransition", "slideInLeft"}
+                { "dataTransition", "slideInLeft"},
+                {"i", "image3" }
             };
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide3)
@@ -52,19 +55,21 @@
                 {"pictureUrl", Model.Picture4Url},
                 { "text", Model.Text4},
                 { "link", Model.Link4},
-                {"alttext", Model.AltText4 }
+                {"alttext", Model.AltText4 },
+                {"i", "image4" }
             };
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide4)
         }
-        
+
         @{
             var dataSlide5 = new ViewDataDictionary(ViewData)
             {
                 {"pictureUrl", Model.Picture5Url},
                 { "text", Model.Text5},
                 { "link", Model.Link5},
-                {"alttext", Model.AltText5 }
+                {"alttext", Model.AltText5 },
+                {"i", "image5" }
             };
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide5)
@@ -75,4 +80,16 @@
     $(window).on('load', function () {
         $('#nivo-slider').nivoSlider();
     });
+    if (document.documentElement.clientWidth < 1000) {
+        if (document.getElementById("image1") != null)
+            document.getElementById("image1").src = "@Model.MobilePic1Url";
+        if (document.getElementById("image2") != null)
+            document.getElementById("image2").src = "@Model.MobilePic2Url";
+        if (document.getElementById("image3") != null)
+            document.getElementById("image3").src = "@Model.MobilePic3Url";
+        if (document.getElementById("image4") != null)
+            document.getElementById("image4").src = "@Model.MobilePic4Url";
+        if (document.getElementById("image5") != null)
+            document.getElementById("image5").src = "@Model.MobilePic5Url";
+    }
 </script>

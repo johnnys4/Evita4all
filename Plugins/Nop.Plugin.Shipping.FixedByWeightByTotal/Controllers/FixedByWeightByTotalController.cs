@@ -202,6 +202,9 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
               zip: filter.SearchZip,
               shippingMethodId: filter.SearchShippingMethodId,
               weight: null,
+              length: null,
+              width: null,
+              height: null,
               orderSubtotal: null
               );
 
@@ -226,6 +229,12 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
                             _stateProvinceService.GetStateProvinceById(record.StateProvinceId)?.Name ?? "*",
                         WeightFrom = record.WeightFrom,
                         WeightTo = record.WeightTo,
+                        LengthFrom = record.LengthFrom,
+                        LengthTo = record.LengthTo,
+                        WidthFrom = record.WidthFrom,
+                        WidthTo = record.WidthTo,
+                        HeightFrom = record.HeightFrom,
+                        HeightTo = record.HeightTo,
                         OrderSubtotalFrom = record.OrderSubtotalFrom,
                         OrderSubtotalTo = record.OrderSubtotalTo,
                         AdditionalFixedCost = record.AdditionalFixedCost,
@@ -243,6 +252,30 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
                     htmlSb.AppendFormat("{0}: {1}",
                         _localizationService.GetResource("Plugins.Shipping.FixedByWeightByTotal.Fields.WeightTo"),
                         model.WeightTo);
+                    htmlSb.Append("<br />");
+                    htmlSb.AppendFormat("{0}: {1}",
+                        _localizationService.GetResource("Plugins.Shipping.FixedByWeightByTotal.Fields.LengthFrom"),
+                        model.LengthFrom);
+                    htmlSb.Append("<br />");
+                    htmlSb.AppendFormat("{0}: {1}",
+                        _localizationService.GetResource("Plugins.Shipping.FixedByWeightByTotal.Fields.LengthTo"),
+                        model.LengthTo);
+                    htmlSb.Append("<br />");
+                    htmlSb.AppendFormat("{0}: {1}",
+                        _localizationService.GetResource("Plugins.Shipping.FixedByWeightByTotal.Fields.WidthFrom"),
+                        model.WidthFrom);
+                    htmlSb.Append("<br />");
+                    htmlSb.AppendFormat("{0}: {1}",
+                        _localizationService.GetResource("Plugins.Shipping.FixedByWeightByTotal.Fields.WidthTo"),
+                        model.WidthTo);
+                    htmlSb.Append("<br />");
+                    htmlSb.AppendFormat("{0}: {1}",
+                        _localizationService.GetResource("Plugins.Shipping.FixedByWeightByTotal.Fields.HeightFrom"),
+                        model.HeightFrom);
+                    htmlSb.Append("<br />");
+                    htmlSb.AppendFormat("{0}: {1}",
+                        _localizationService.GetResource("Plugins.Shipping.FixedByWeightByTotal.Fields.HeightTo"),
+                        model.HeightTo);
                     htmlSb.Append("<br />");
                     htmlSb.AppendFormat("{0}: {1}",
                         _localizationService.GetResource(
@@ -274,9 +307,9 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
                     model.DataHtml = htmlSb.ToString();
 
                     return model;
-                });
+                }).OrderBy(x=>x.Id);
             });
-
+            
             return Json(gridModel);
         }
 
@@ -289,7 +322,13 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
             {
                 PrimaryStoreCurrencyCode = _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId)?.CurrencyCode,
                 BaseWeightIn = _measureService.GetMeasureWeightById(_measureSettings.BaseWeightId)?.Name,
+                BaseLengthIn = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId)?.Name,
+                BaseWidthIn = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId)?.Name,
+                BaseHeightIn = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId)?.Name,
                 WeightTo = 1000000,
+                LengthTo = 1000000,
+                WidthTo = 1000000,
+                HeightTo = 1000000,
                 OrderSubtotalTo = 1000000
             };
 
@@ -335,6 +374,12 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
                 ShippingMethodId = model.ShippingMethodId,
                 WeightFrom = model.WeightFrom,
                 WeightTo = model.WeightTo,
+                LengthFrom = model.LengthFrom,
+                LengthTo = model.LengthTo,
+                WidthFrom = model.WidthFrom,
+                WidthTo = model.WidthTo,
+                HeightFrom = model.HeightFrom,
+                HeightTo = model.HeightTo,
                 OrderSubtotalFrom = model.OrderSubtotalFrom,
                 OrderSubtotalTo = model.OrderSubtotalTo,
                 AdditionalFixedCost = model.AdditionalFixedCost,
@@ -370,6 +415,12 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
                 ShippingMethodId = sbw.ShippingMethodId,
                 WeightFrom = sbw.WeightFrom,
                 WeightTo = sbw.WeightTo,
+                LengthFrom = sbw.LengthFrom,
+                LengthTo = sbw.LengthTo,
+                WidthFrom = sbw.WidthFrom,
+                WidthTo = sbw.WidthTo,
+                HeightFrom = sbw.HeightFrom,
+                HeightTo = sbw.HeightTo,
                 OrderSubtotalFrom = sbw.OrderSubtotalFrom,
                 OrderSubtotalTo = sbw.OrderSubtotalTo,
                 AdditionalFixedCost = sbw.AdditionalFixedCost,
@@ -378,6 +429,10 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
                 LowerWeightLimit = sbw.LowerWeightLimit,
                 PrimaryStoreCurrencyCode = _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId)?.CurrencyCode,
                 BaseWeightIn = _measureService.GetMeasureWeightById(_measureSettings.BaseWeightId)?.Name,
+                BaseLengthIn = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId)?.Name,
+                BaseWidthIn = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId)?.Name,
+                BaseHeightIn = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId)?.Name,
+
                 TransitDays = sbw.TransitDays
             };
 
@@ -434,6 +489,12 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Controllers
             sbw.ShippingMethodId = model.ShippingMethodId;
             sbw.WeightFrom = model.WeightFrom;
             sbw.WeightTo = model.WeightTo;
+            sbw.LengthFrom = model.LengthFrom;
+            sbw.LengthTo = model.LengthTo;
+            sbw.WidthFrom = model.WidthFrom;
+            sbw.WidthTo = model.WidthTo;
+            sbw.HeightFrom = model.HeightFrom;
+            sbw.HeightTo = model.HeightTo;
             sbw.OrderSubtotalFrom = model.OrderSubtotalFrom;
             sbw.OrderSubtotalTo = model.OrderSubtotalTo;
             sbw.AdditionalFixedCost = model.AdditionalFixedCost;

@@ -203,18 +203,18 @@ namespace Nop.Services.Tests.Shipping
         {
             var product1 = new Product
             {
-                Length = 2,
-                Width = 2,
-                Height = 2
+                Length = 20,
+                Width = 20,
+                Height = 3
             };
 
             _productService.InsertProduct(product1);
 
             var product2 = new Product
             {
-                Length = 3,
-                Width = 5,
-                Height = 2
+                Length = 10,
+                Width = 10,
+                Height = 1
             };
 
             _productService.InsertProduct(product2);
@@ -223,7 +223,7 @@ namespace Nop.Services.Tests.Shipping
             {
                 new GetShippingOptionRequest.PackageItem(new ShoppingCartItem
                                 {
-                                    Quantity = 3,
+                                    Quantity = 1,
                                     ProductId = product1.Id
                                 }, product1),
                 new GetShippingOptionRequest.PackageItem(new ShoppingCartItem
@@ -235,9 +235,9 @@ namespace Nop.Services.Tests.Shipping
 
             _shippingService.GetDimensions(items, out var width, out var length, out var height);
 
-            Math.Round(length, 2).Should().Be(3.78M);
-            Math.Round(width, 2).Should().Be(5);    //preserve max width
-            Math.Round(height, 2).Should().Be(3.78M);
+            Math.Round(length, 2).Should().Be(20);
+            Math.Round(width, 2).Should().Be(20);    //preserve max width
+            Math.Round(height, 2).Should().Be(8);
         }
 
         [Test]

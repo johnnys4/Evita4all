@@ -75,9 +75,11 @@ namespace Nop.Plugin.Widgets.NivoSlider
                 Picture1Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(_fileProvider.Combine(sampleImagesPath, "banner1.jpg")), MimeTypes.ImagePJpeg, "banner_1").Id,
                 Text1 = "",
                 Link1 = _webHelper.GetStoreLocation(false),
+                MobilePic1Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(_fileProvider.Combine(sampleImagesPath, "banner1-mobile.jpg")), MimeTypes.ImagePJpeg, "banner_1").Id,
                 Picture2Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(_fileProvider.Combine(sampleImagesPath, "banner2.jpg")), MimeTypes.ImagePJpeg, "banner_2").Id,
                 Text2 = "",
-                Link2 = _webHelper.GetStoreLocation(false)
+                Link2 = _webHelper.GetStoreLocation(false),
+                MobilePic2Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(_fileProvider.Combine(sampleImagesPath, "banner2-mobile.jpg")), MimeTypes.ImagePJpeg, "banner_2").Id,
                 //Picture3Id = _pictureService.InsertPicture(File.ReadAllBytes(_fileProvider.Combine(sampleImagesPath,"banner3.jpg")), MimeTypes.ImagePJpeg, "banner_3").Id,
                 //Text3 = "",
                 //Link3 = _webHelper.GetStoreLocation(false),
@@ -98,7 +100,9 @@ namespace Nop.Plugin.Widgets.NivoSlider
                 ["Plugins.Widgets.NivoSlider.Link"] = "URL",
                 ["Plugins.Widgets.NivoSlider.Link.Hint"] = "Enter URL. Leave empty if you don't want this picture to be clickable.",
                 ["Plugins.Widgets.NivoSlider.AltText"] = "Image alternate text",
-                ["Plugins.Widgets.NivoSlider.AltText.Hint"] = "Enter alternate text that will be added to image."
+                ["Plugins.Widgets.NivoSlider.AltText.Hint"] = "Enter alternate text that will be added to image.",
+                ["Plugins.Widgets.NivoSlider.MobilePicture"] = "Mobile Picture",
+                ["Plugins.Widgets.NivoSlider.MobilePicture.Hint"] = "Upload the x*x squared picture for devices < 1000 width."
             });
 
             base.Install();

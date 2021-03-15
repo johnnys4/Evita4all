@@ -749,7 +749,7 @@ label, label + * {
 .header {
 	position: relative;
 	z-index: 10;
-	width: 95%;
+	width: 100%;
 	margin: auto;
 	text-align: center;
 }
@@ -798,7 +798,7 @@ label, label + * {
 
 .header-links-wrapper {
 	position: relative;
-	padding: 20px 0;
+
 }
 .header-links {
 }
@@ -823,8 +823,7 @@ label, label + * {
 	display: block;
 	width: 70%;
 	max-width: 400px;
-	margin: 10px auto 0;
-	background-color: #f6f6f6;
+	margin: auto;
 	padding: 0 20px;
 }
 #topcartlink a {
@@ -838,7 +837,7 @@ label, label + * {
 }
 
 .header-logo {
-	margin: 0 0 20px;
+	margin: 80px 0;
 	text-align: center;
 }
 .header-logo a {
@@ -847,7 +846,7 @@ label, label + * {
 	line-height: 0; /*firefox line-height bug fix*/
 }
 .header-logo a img {
-	max-width: 75%;
+	max-width: 100%;
 	opacity: 1;
 }
 
@@ -930,8 +929,8 @@ label, label + * {
 .search-box-button-icon {
 	background: url('../images/search_icon.png') no-repeat center;
 	background-size: 90% 90%;
-	height: 40px;
-	width: 40px;
+	height: 36px;
+	width: 36px;
 	background-color: #ff0080;
 	border: 1px solid #ddd;
 }
@@ -1773,7 +1772,6 @@ label, label + * {
     cursor: pointer;
 	border: 1px solid #ddd;
 }
-
 .overview {
 	position: relative;
 	margin: 0 0 50px;
@@ -2311,6 +2309,7 @@ label, label + * {
     position: relative;
     z-index: 0;
 	padding: 1px;
+	border: 1px solid #444;
 }
 .attribute-squares label {
 	display: block;
@@ -2321,11 +2320,11 @@ label, label + * {
     display: table !important;
     width: 32px !important;
     height: 32px !important;
-    border: 1px solid #444 !important;
+    
     cursor: pointer;
 }
 .attribute-squares .selected-value .attribute-square-container {
-	background-color: #4ab2f1;
+	border-color: #cc0066;
 }
 .attribute-squares li input {
 	position: relative;
@@ -4402,7 +4401,7 @@ label, label + * {
 .search-input .button-1 {
 	min-width: 140px;
 	border: none;
-	background-color: #4ab2f1;
+	background-color: #ff0080;
     padding: 10px 30px;
 	text-align: center;
 	font-size: 15px;
@@ -5582,15 +5581,18 @@ pre {
 
 
 /*** MOBILE NAVIGATION ***/
-
-
+#small-search-box-form{
+	display:none;
+}
+.block-recently-viewed-products{
+	display:none;
+}
 .header-menu {
 	position: relative;
 	z-index: 1;
 	width: 90%;
 	max-width: 600px;
 	margin: 0 auto 40px;
-	padding-top:50px;
 }
 .menu-toggle {
 	background: #ff0080 url('../images/burger.png') right center no-repeat;
@@ -5726,9 +5728,6 @@ pre {
 	width: 260px;
 	-webkit-transition: width 0.4s ease-in-out;
 	transition: width 0.4s ease-in-out;
-}
-input[type=text]:focus {
-	width: 450px;
 }
 .ui-autocomplete {
 	width: 450px !important;
@@ -6600,6 +6599,7 @@ input[type=text]:focus {
 .header-links-wrapper {
 	float: right;
 	padding: 0;
+	display: flex;
 }
 .header-links li {
 	margin: 0 16px;
@@ -6717,15 +6717,16 @@ input[type=text]:focus {
 }
 
 .header-lower {
-	display: table;
-	width: 80%;
+	display: block;
+	width: 30%;
 	text-align:center;
 	margin: auto;
+	padding: 60px 0 50px 0;
 }
 .header-logo {
-	display: table-cell;
 	font-size: 0;
-	width:23%;
+	width:100%;
+	margin:auto;
 }
 .search-box {
 	display: table-cell;
@@ -6738,6 +6739,24 @@ input[type=text]:focus {
 	height: 40px;
 }
 
+#small-searchterms {
+    width: 36px;
+    background: #ff0080 url('../images/search_icon.png') no-repeat right;
+	background-size: 32px 32px;
+    -moz-transition: ease-in-out 1s;
+    -o-transition: ease-in-out 1s;
+    -webkit-transition: ease-in-out 1s;
+    transition: ease-in-out 1s;
+	border-radius:10px;
+	border-color: #ff0080;
+}
+#small-searchterms:focus{
+	width: 450px;
+	background: #fff url('../images/search_icon2.png') no-repeat right ;
+	background-size: 32px 32px;
+	border-color: #ddd;
+
+}
 
 /*** NAVIGATION ***/
 
@@ -6746,10 +6765,10 @@ input[type=text]:focus {
 	position: relative;
 	z-index: 5;
 	width: 980px;
-	margin: 0 auto 30px;
+	margin: 0 auto 50px;
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
-	padding: 25px 0;
+	padding: 10px 0;
 	text-align: center;
 }
 .menu-toggle,

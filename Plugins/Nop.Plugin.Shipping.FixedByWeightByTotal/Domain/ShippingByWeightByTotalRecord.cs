@@ -51,6 +51,12 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Domain
         /// Gets or sets the "Weight to" value
         /// </summary>
         public decimal WeightTo { get; set; }
+        public decimal LengthFrom { get; set; }
+        public decimal LengthTo { get; set; }
+        public decimal WidthFrom { get; set; }
+        public decimal WidthTo { get; set; }
+        public decimal HeightFrom { get; set; }
+        public decimal HeightTo { get; set; }
 
         /// <summary>
         /// Gets or sets the "Order subtotal from" value

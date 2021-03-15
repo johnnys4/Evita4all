@@ -26,10 +26,13 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Services
         /// <param name="stateProvinceId">State identifier</param>
         /// <param name="zip">Zip postal code</param>
         /// <param name="weight">Weight</param>
+        /// <param name="length">Length</param>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
         /// <param name="orderSubtotal">Order subtotal</param>
         /// <returns>Shipping by weight record</returns>
         ShippingByWeightByTotalRecord FindRecords(int shippingMethodId, int storeId, int warehouseId,  
-            int countryId, int stateProvinceId, string zip, decimal weight, decimal orderSubtotal);
+            int countryId, int stateProvinceId, string zip, decimal weight, decimal length, decimal width, decimal height, decimal orderSubtotal);
 
         /// <summary>
         /// Filter Shipping Weight Records
@@ -41,12 +44,15 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Services
         /// <param name="stateProvinceId">State identifier</param>
         /// <param name="zip">Zip postal code</param>
         /// <param name="weight">Weight</param>
+        /// <param name="length">Weight</param>
+        /// <param name="width">Weight</param>
+        /// <param name="height">Weight</param>
         /// <param name="orderSubtotal">Order subtotal</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <returns>List of the shipping by weight record</returns>
         IPagedList<ShippingByWeightByTotalRecord> FindRecords(int shippingMethodId, int storeId, int warehouseId,
-            int countryId, int stateProvinceId, string zip, decimal? weight, decimal? orderSubtotal, int pageIndex, int pageSize);
+            int countryId, int stateProvinceId, string zip, decimal? weight, decimal? length, decimal? width, decimal? height, decimal? orderSubtotal, int pageIndex, int pageSize);
 
         /// <summary>
         /// Get a shipping by weight record by identifier

@@ -21,6 +21,13 @@ namespace Nop.Plugin.Widgets.NivoSlider.Models
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.AltText")]
         public string AltText1 { get; set; }
         public bool AltText1_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Plugins.Widgets.NivoSlider.MobilePicture")]
+        [UIHint("Picture")]
+        public int MobilePic1Id { get; set; }
+        public bool MobilePic1Id_OverrideForStore { get; set; }
+
+
+
 
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.Picture")]
         [UIHint("Picture")]
@@ -35,6 +42,10 @@ namespace Nop.Plugin.Widgets.NivoSlider.Models
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.AltText")]
         public string AltText2 { get; set; }
         public bool AltText2_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Plugins.Widgets.NivoSlider.MobilePicture")]
+        [UIHint("Picture")]
+        public int MobilePic2Id { get; set; }
+        public bool MobilePic2Id_OverrideForStore { get; set; }
 
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.Picture")]
         [UIHint("Picture")]
@@ -49,6 +60,10 @@ namespace Nop.Plugin.Widgets.NivoSlider.Models
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.AltText")]
         public string AltText3 { get; set; }
         public bool AltText3_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Plugins.Widgets.NivoSlider.MobilePicture")]
+        [UIHint("Picture")]
+        public int MobilePic3Id { get; set; }
+        public bool MobilePic3Id_OverrideForStore { get; set; }
 
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.Picture")]
         [UIHint("Picture")]
@@ -63,6 +78,10 @@ namespace Nop.Plugin.Widgets.NivoSlider.Models
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.AltText")]
         public string AltText4 { get; set; }
         public bool AltText4_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Plugins.Widgets.NivoSlider.MobilePicture")]
+        [UIHint("Picture")]
+        public int MobilePic4Id { get; set; }
+        public bool MobilePic4Id_OverrideForStore { get; set; }
 
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.Picture")]
         [UIHint("Picture")]
@@ -77,5 +96,9 @@ namespace Nop.Plugin.Widgets.NivoSlider.Models
         [NopResourceDisplayName("Plugins.Widgets.NivoSlider.AltText")]
         public string AltText5 { get; set; }
         public bool AltText5_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Plugins.Widgets.NivoSlider.MobilePicture")]
+        [UIHint("Picture")]
+        public int MobilePic5Id { get; set; }
+        public bool MobilePic5Id_OverrideForStore { get; set; }
     }
 }

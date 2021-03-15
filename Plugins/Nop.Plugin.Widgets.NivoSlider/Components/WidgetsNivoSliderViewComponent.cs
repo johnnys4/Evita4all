@@ -46,26 +46,31 @@ namespace Nop.Plugin.Widgets.NivoSlider.Components
                 Text1 = nivoSliderSettings.Text1,
                 Link1 = nivoSliderSettings.Link1,
                 AltText1 = nivoSliderSettings.AltText1,
+                MobilePic1Url = GetPictureUrl(nivoSliderSettings.MobilePic1Id),
 
                 Picture2Url = GetPictureUrl(nivoSliderSettings.Picture2Id),
                 Text2 = nivoSliderSettings.Text2,
                 Link2 = nivoSliderSettings.Link2,
                 AltText2 = nivoSliderSettings.AltText2,
+                MobilePic2Url = GetPictureUrl(nivoSliderSettings.MobilePic2Id),
 
                 Picture3Url = GetPictureUrl(nivoSliderSettings.Picture3Id),
                 Text3 = nivoSliderSettings.Text3,
                 Link3 = nivoSliderSettings.Link3,
                 AltText3 = nivoSliderSettings.AltText3,
+                MobilePic3Url = GetPictureUrl(nivoSliderSettings.MobilePic3Id),
 
                 Picture4Url = GetPictureUrl(nivoSliderSettings.Picture4Id),
                 Text4 = nivoSliderSettings.Text4,
                 Link4 = nivoSliderSettings.Link4,
                 AltText4 = nivoSliderSettings.AltText4,
+                MobilePic4Url = GetPictureUrl(nivoSliderSettings.MobilePic4Id),
 
                 Picture5Url = GetPictureUrl(nivoSliderSettings.Picture5Id),
                 Text5 = nivoSliderSettings.Text5,
                 Link5 = nivoSliderSettings.Link5,
-                AltText5 = nivoSliderSettings.AltText5
+                AltText5 = nivoSliderSettings.AltText5,
+                MobilePic5Url = GetPictureUrl(nivoSliderSettings.MobilePic5Id),
             };
 
             if (string.IsNullOrEmpty(model.Picture1Url) && string.IsNullOrEmpty(model.Picture2Url) &&

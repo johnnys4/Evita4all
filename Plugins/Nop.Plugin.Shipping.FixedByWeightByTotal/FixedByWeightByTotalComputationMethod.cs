@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Nop.Core;
+﻿using Nop.Core;
 using Nop.Core.Domain.Shipping;
 using Nop.Plugin.Shipping.FixedByWeightByTotal.Domain;
 using Nop.Plugin.Shipping.FixedByWeightByTotal.Services;
@@ -11,6 +8,9 @@ using Nop.Services.Orders;
 using Nop.Services.Plugins;
 using Nop.Services.Shipping;
 using Nop.Services.Shipping.Tracking;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Nop.Plugin.Shipping.FixedByWeightByTotal
 {
@@ -83,8 +83,11 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal
         /// <param name="shippingByWeightByTotalRecord">Shipping by weight/by total record</param>
         /// <param name="subTotal">Subtotal</param>
         /// <param name="weight">Weight</param>
+        /// <param name="length">Length</param>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
         /// <returns>Rate</returns>
-        private decimal GetRate(ShippingByWeightByTotalRecord shippingByWeightByTotalRecord, decimal subTotal, decimal weight)
+        private decimal GetRate(ShippingByWeightByTotalRecord shippingByWeightByTotalRecord, decimal subTotal, decimal weight, decimal length, decimal width, decimal height)
         {
             //additional fixed cost
             var shippingTotal = shippingByWeightByTotalRecord.AdditionalFixedCost;
@@ -101,11 +104,14 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal
             {
                 shippingTotal += Math.Round((decimal)((((float)subTotal) * ((float)shippingByWeightByTotalRecord.PercentageRateOfSubtotal)) / 100f), 2);
             }
-
             return Math.Max(shippingTotal, decimal.Zero);
         }
 
         #endregion
+
+
+        
+
 
         #region Methods
 
@@ -156,14 +162,15 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal
 
                 //get weight of shipped items (excluding items with free shipping)
                 var weight = _shippingService.GetTotalWeight(getShippingOptionRequest, ignoreFreeShippedItems: true);
-
-                foreach (var shippingMethod in _shippingService.GetAllShippingMethods(countryId))
+                decimal lengthTmp, widthTmp, heightTmp;
+                _shippingService.GetDimensions(getShippingOptionRequest.Items, out widthTmp, out lengthTmp, out heightTmp);
+                foreach (var shippingMethod in _shippingService.GetAllShippingMethods(countryId).OrderBy(x=>x.Id))
                 {
                     int? transitDays = null;
                     var rate = decimal.Zero;
 
                     var shippingByWeightByTotalRecord = _shippingByWeightByTotalService.FindRecords(
-                            shippingMethod.Id, storeId, warehouseId, countryId, stateProvinceId, zip, weight, subTotal);
+                            shippingMethod.Id, storeId, warehouseId, countryId, stateProvinceId, zip, weight, lengthTmp, widthTmp, heightTmp, subTotal);
                     if (shippingByWeightByTotalRecord == null)
                     {
                         if (_fixedByWeightByTotalSettings.LimitMethodsToCreated)
@@ -171,10 +178,9 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal
                     }
                     else
                     {
-                        rate = GetRate(shippingByWeightByTotalRecord, subTotal, weight);
+                        rate = GetRate(shippingByWeightByTotalRecord, subTotal, weight, lengthTmp, widthTmp, heightTmp);
                         transitDays = shippingByWeightByTotalRecord.TransitDays;
                     }
-
                     response.ShippingOptions.Add(new ShippingOption
                     {
                         Name = _localizationService.GetLocalized(shippingMethod, x => x.Name),
@@ -277,6 +283,18 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal
                 ["Plugins.Shipping.FixedByWeightByTotal.Fields.WeightFrom.Hint"] = "Order weight from.",
                 ["Plugins.Shipping.FixedByWeightByTotal.Fields.WeightTo"] = "Order weight to",
                 ["Plugins.Shipping.FixedByWeightByTotal.Fields.WeightTo.Hint"] = "Order weight to.",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.LengthFrom"] = "Order length from",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.LengthFrom.Hint"] = "Package length from.",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.LengthTo"] = "Order length to",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.LengthTo.Hint"] = "Package length to.",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.WidthFrom"] = "Order width from",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.WidthFrom.Hint"] = "Package width from.",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.WidthTo"] = "Order width to",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.WidthTo.Hint"] = "Package width to.",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.HeightFrom"] = "Order height from",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.HeightFrom.Hint"] = "Package height from.",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.HeightTo"] = "Order height to",
+                ["Plugins.Shipping.FixedByWeightByTotal.Fields.Height.Hint"] = "Package height to.",
                 ["Plugins.Shipping.FixedByWeightByTotal.Fields.Zip"] = "Zip",
                 ["Plugins.Shipping.FixedByWeightByTotal.Fields.Zip.Hint"] = "Zip / postal code. If zip is empty, then this shipping rate will apply to all customers from the given country or state, regardless of the zip code.",
                 ["Plugins.Shipping.FixedByWeightByTotal.Fixed"] = "Fixed Rate",

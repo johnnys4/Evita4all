@@ -1,10 +1,9 @@
 ﻿@model SearchBoxModel
+
 <form asp-route="ProductSearch" method="get" id="small-search-box-form">
     @if (Model.ShowSearchBox)
     {
-        <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="Search product" aria-label="search product" />
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.SearchBoxBeforeSearchButton })
-        <input type="submit" class="button-1 search-box-button-icon" value=" "/>
+        <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder=" " aria-label=" " />
         @if (Model.SearchTermMinimumLength > 0)
         {
             <script asp-location="Footer">
@@ -57,5 +56,7 @@
             </script>
         }
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.SearchBox })
+
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.SearchBoxBeforeSearchButton })
     }
 </form>

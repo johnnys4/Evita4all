@@ -4,9 +4,11 @@
 .theme-custom {
 	position: relative;
 	margin: 0 auto 60px;
+	padding-top: 42%;
 }
 .theme-custom .nivoSlider {
-	position: relative;
+	position: absolute;
+	top:0;
 	z-index: 0;
 	background: #fff url('loading.gif') 50% 50% no-repeat;
 }
@@ -42,7 +44,7 @@
 	font-size: 0;
 }
 .theme-custom .nivo-controlNav a.active {
-	background-color: #4ab2f1;
+	background-color: #ff0080;
 }
 
 /* DIRECTIONAL NAVIGATION */
@@ -110,6 +112,7 @@
 .theme-custom {
 	max-width: 600px;
 	margin: -20px auto 40px;
+	padding-top:100%;
 }
 .theme-custom .nivo-directionNav {
 	display: none;

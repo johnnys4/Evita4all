@@ -55,6 +55,23 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Models
         [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.WeightTo")]
         public decimal WeightTo { get; set; }
 
+        [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.LengthFrom")]
+        public decimal LengthFrom { get; set; }
+
+        [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.LengthTo")]
+        public decimal LengthTo { get; set; }
+
+        [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.WidthFrom")]
+        public decimal WidthFrom { get; set; }
+
+        [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.WidthTo")]
+        public decimal WidthTo { get; set; }
+        [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.HeightFrom")]
+        public decimal HeightFrom { get; set; }
+
+        [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.HeightTo")]
+        public decimal HeightTo { get; set; }
+
         [NopResourceDisplayName("Plugins.Shipping.FixedByWeightByTotal.Fields.OrderSubtotalFrom")]
         public decimal OrderSubtotalFrom { get; set; }
 
@@ -78,6 +95,9 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Models
 
         public string PrimaryStoreCurrencyCode { get; set; }
         public string BaseWeightIn { get; set; }
+        public string BaseLengthIn { get; set; }
+        public string BaseWidthIn { get; set; }
+        public string BaseHeightIn { get; set; }
 
         public IList<SelectListItem> AvailableCountries { get; set; }
         public IList<SelectListItem> AvailableStates { get; set; }

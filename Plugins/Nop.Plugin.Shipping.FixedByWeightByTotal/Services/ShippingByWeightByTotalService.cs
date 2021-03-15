@@ -58,7 +58,7 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Services
             var rez = _staticCacheManager.Get(key, () =>
             {
                 var query = from sbw in _sbwtRepository.Table
-                            orderby sbw.StoreId, sbw.CountryId, sbw.StateProvinceId, sbw.Zip, sbw.ShippingMethodId, sbw.WeightFrom, sbw.OrderSubtotalFrom
+                            orderby sbw.StoreId, sbw.CountryId, sbw.StateProvinceId, sbw.Zip, sbw.Id, sbw.WeightFrom,sbw.LengthFrom,sbw.WidthFrom,sbw.HeightFrom,sbw.OrderSubtotalFrom
                             select sbw;
 
                 return query.ToList();
@@ -79,18 +79,21 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Services
         /// <param name="stateProvinceId">State identifier</param>
         /// <param name="zip">Zip postal code</param>
         /// <param name="weight">Weight</param>
+        /// <param name="length">Length</param>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
         /// <param name="orderSubtotal">Order subtotal</param>
         /// <param name="pageIndex">Page index</param>
         /// <param name="pageSize">Page size</param>
         /// <returns>List of the shipping by weight record</returns>
         public virtual IPagedList<ShippingByWeightByTotalRecord> FindRecords(int shippingMethodId, int storeId, int warehouseId,
-            int countryId, int stateProvinceId, string zip, decimal? weight, decimal? orderSubtotal, int pageIndex, int pageSize)
+            int countryId, int stateProvinceId, string zip, decimal? weight, decimal? length, decimal? width, decimal? height, decimal? orderSubtotal, int pageIndex, int pageSize)
         {
             zip = zip?.Trim() ?? string.Empty;
 
-            //filter by weight and shipping method
+            //filter by weight,size and shipping method
             var existingRates = GetAll()
-                .Where(sbw => sbw.ShippingMethodId == shippingMethodId && (!weight.HasValue || weight >= sbw.WeightFrom && weight <= sbw.WeightTo))
+                .Where(sbw => sbw.ShippingMethodId == shippingMethodId && (!weight.HasValue || weight >= sbw.WeightFrom && weight <= sbw.WeightTo) && (!length.HasValue || length >= sbw.LengthFrom && length <= sbw.LengthTo) && (!width.HasValue || width >= sbw.WidthFrom && width <= sbw.WidthTo) && (!height.HasValue || height >= sbw.HeightFrom && height <= sbw.HeightTo))
                 .ToList();
 
             //filter by order subtotal
@@ -142,12 +145,15 @@ namespace Nop.Plugin.Shipping.FixedByWeightByTotal.Services
         /// <param name="stateProvinceId">State identifier</param>
         /// <param name="zip">Zip postal code</param>
         /// <param name="weight">Weight</param>
+        /// <param name="length">Length</param>
+        /// <param name="width">Width</param>
+        /// <param name="height">Height</param>
         /// <param name="orderSubtotal">Order subtotal</param>
         /// <returns>Shipping by weight record</returns>
         public virtual ShippingByWeightByTotalRecord FindRecords(int shippingMethodId, int storeId, int warehouseId, 
-            int countryId, int stateProvinceId, string zip, decimal weight, decimal orderSubtotal)
+            int countryId, int stateProvinceId, string zip, decimal weight, decimal length, decimal width, decimal height, decimal orderSubtotal)
         {
-            var foundRecords = FindRecords(shippingMethodId, storeId, warehouseId, countryId, stateProvinceId, zip, weight, orderSubtotal, 0, int.MaxValue);
+            var foundRecords = FindRecords(shippingMethodId, storeId, warehouseId, countryId, stateProvinceId, zip, weight, length, width, height, orderSubtotal, 0, int.MaxValue);
 
             return foundRecords.FirstOrDefault();
         }
